@@ -1,5 +1,9 @@
-import fs from 'fs';
+const fs = require('fs');
 
 fs.writeFile('test.txt', 'Olá mundo nodejs', (err) => {
-  console.log(err);
+  if (err) {
+    console.log(err);
+  } else {
+    console.log('archive created successfully');
+  }
 });
