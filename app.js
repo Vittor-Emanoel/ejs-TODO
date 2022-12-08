@@ -8,6 +8,11 @@ app.get('/', (req, res) => {
   res.send('<h1>Minha lista de tarefas</h1>');
 });
 
+//devolvendo JSON
+app.get('/json', (req, res) => {
+  res.json({ title: 'tomar agua', is_complete: true });
+});
+
 //adicionando a porta onde o server vai escutar
 app.listen(3000, () => {
   console.log('Server running on port 3000 🚀');
