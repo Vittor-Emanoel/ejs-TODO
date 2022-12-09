@@ -1,17 +1,14 @@
+const checklistRouter = require('./src/routes/checklist');
 const express = require('express');
 
 //app recebendo o express com o seus metodos
 const app = express();
 
-//criando a primeira rota com o metodos do express
-app.get('/', (req, res) => {
-  res.send('<h1>Minha lista de tarefas</h1>');
-});
+//me permite enviar objeto json
+app.use(express.json());
 
-//devolvendo JSON
-app.get('/json', (req, res) => {
-  res.json({ title: 'tomar agua', is_complete: true });
-});
+//usando a rota
+app.use(checklistRouter);
 
 //adicionando a porta onde o server vai escutar
 app.listen(3000, () => {
