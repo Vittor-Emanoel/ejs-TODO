@@ -13,4 +13,11 @@ router.post('/checklists', (req, res) => {
   res.status(200).send(req.body);
 });
 
+//esperando receber um paremetro id;
+//params é os paremetros da URL
+router.get('/checklists/:id', (req, res) => {
+  console.log(req.params.id);
+  res.send(`Id ${req.params.id}`);
+});
+
 module.exports = router;
