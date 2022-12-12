@@ -1,5 +1,9 @@
-const checklistRouter = require('./src/routes/checklist');
 const express = require('express');
+const path = require('path');
+
+const checklistRouter = require('./src/routes/checklist');
+const rootRouter = require('./src/routes/index.js');
+
 const db = require('./config/db.config');
 
 //app recebendo o express com o seus metodos
@@ -7,6 +11,9 @@ const app = express();
 
 //me permite enviar objeto json
 app.use(express.json());
+
+app.set('views', path.join(__dirname, 'src/views'));
+app.set('views engine', 'ejs');
 
 //resposta da promise
 
@@ -17,7 +24,7 @@ db.once('open', () => {
 });
 
 //usando a rota
-app.use(checklistRouter);
+app.use(checklistRouter, rootRouter);
 
 //adicionando a porta onde o server vai escutar
 app.listen(3000, () => {
