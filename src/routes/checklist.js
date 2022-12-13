@@ -9,9 +9,13 @@ const Checklist = require('../models/checklist.js');
 router.get('/checklists', async (req, res) => {
   try {
     let checklists = await Checklist.find({});
-    res.status(200).json(checklists);
+    // res.status(200).json(checklists);
+    res.status(200).render('checklists/index.ejs', { checklists: checklists });
   } catch (error) {
-    res.status(500).json(`Erro ao buscar as checklists ${error}`);
+    res
+      .status(200)
+      .render('pages/error', { error: 'Erro ao exibir as Listas' });
+    // res.status(500).json(`Erro ao buscar as checklists ${error}`);
   }
 });
 
@@ -35,11 +39,14 @@ router.post('/checklists', async (req, res) => {
 router.get('/checklists/:id', async (req, res) => {
   try {
     let checklist = await Checklist.findById(req.params.id);
-    res.status(200).json(checklist);
+    // res.status(200).json(checklist);
+    res.status(200).render('checklists/show.ejs', { checklist: checklist });
   } catch (error) {
-    res.status(500).json(`Erro ao buscar a checklist ${error}`);
+    // res.status(500).json(`Erro ao buscar a checklist ${error}`);
+    res
+      .status(200)
+      .render('pages/error', { error: 'Erro ao exibir as Listas de Tarefas' });
   }
-  res.send(`Id ${req.params.id}`);
 });
 
 //atualizando
