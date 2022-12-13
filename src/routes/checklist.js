@@ -44,7 +44,7 @@ router.get('/checklists/:id', async (req, res) => {
   } catch (error) {
     // res.status(500).json(`Erro ao buscar a checklist ${error}`);
     res
-      .status(200)
+      .status(500)
       .render('pages/error', { error: 'Erro ao exibir as Listas de Tarefas' });
   }
 });
