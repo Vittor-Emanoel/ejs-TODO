@@ -21,16 +21,27 @@ router.get('/checklists', async (req, res) => {
 
 //criando checklist.
 router.post('/checklists', async (req, res) => {
-  let { name } = req.body;
+  let { name } = req.body.checklist;
   try {
-    let checklist = await Checklist.create({ name });
-    res.status(200).json(checklist);
+    await Checklist.create({ name });
+    res.status(200).redirect('/checklists');
   } catch (error) {
     if (!name) {
       res.status(400).json(`Nome não foi encontrado`);
     } else {
       res.status(422).json(`Erro ao cadastrar tarefa : ${error}`);
     }
+  }
+});
+
+router.get('/checklists/new', async (req, res) => {
+  try {
+    let checklist = new Checklist();
+    res.status(200).render('checklist/new.ejs', { checklist: checklist });
+  } catch (error) {
+    res
+      .status(500)
+      .render('pages/error', { error: 'Erro ao carregar o formulario' });
   }
 });
 
