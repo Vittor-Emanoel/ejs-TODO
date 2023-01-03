@@ -27,7 +27,7 @@ router.get('/checklists/new', async (req, res) => {
 
 //criando checklist.
 router.post('/checklists', async (req, res) => {
-  let { name } = req.body.checkList
+  let { name } = req.body.checklist
   let checklist = new Checklist({ name })
 
   try {
