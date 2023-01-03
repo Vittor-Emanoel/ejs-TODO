@@ -1,12 +1,12 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
 
-mongoose.Promise = global.Promise;
+mongoose.Promise = global.Promise
 
-mongoose.set('strictQuery', true);
+mongoose.set('strictQuery', true)
 mongoose.connect(
   'mongodb+srv://to-do-list:300321Vb@banco01.cd03pgl.mongodb.net/?retryWrites=true&w=majority'
-);
+)
 
-const db = mongoose.connection;
+const db = mongoose.connection
 
-module.exports = db;
+module.exports = db
