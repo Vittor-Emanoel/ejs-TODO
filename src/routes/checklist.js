@@ -25,6 +25,19 @@ router.get('/checklists/new', async (req, res) => {
   }
 })
 
+//edit
+
+router.get('/checklists/:id/edit', async (req, res) => {
+  try {
+    let checklist = await Checklist.findById(req.params.id)
+    res.status(200).render('checklists/edit.ejs', { checklist: checklist })
+  } catch (error) {
+    res
+      .status(500)
+      .render('pages/error', { error: 'Erro ao exibir a Listas de Tarefas' })
+  }
+})
+
 //criando checklist.
 router.post('/checklists', async (req, res) => {
   let { name } = req.body.checklist
