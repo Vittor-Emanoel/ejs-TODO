@@ -3,6 +3,7 @@ const path = require('path')
 
 const checklistRouter = require('./src/routes/checklist')
 const rootRouter = require('./src/routes/index.js')
+const methodOverride = require('method-override')
 
 const db = require('./config/db.config')
 
@@ -12,6 +13,7 @@ const app = express()
 //me permite enviar objeto json
 app.use(express.json())
 app.use(express.static(path.join(__dirname, 'public')))
+app.use(methodOverride('_method'))
 
 app.use(express.urlencoded({ extended: true }))
 
